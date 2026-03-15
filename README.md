@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<title>Авторизация</title>
+<title>Администратор</title>
 
 <link rel="stylesheet"
 href="{{ url_for('static', filename='css/style.css') }}">
@@ -11,19 +12,50 @@ href="{{ url_for('static', filename='css/style.css') }}">
 
 <body>
 
-<h2>Авторизация</h2>
+<h2>Панель администратора</h2>
+
+<h3>Создать пользователя</h3>
 
 <form method="post">
 
-<label>Логин</label>
-<input type="text" name="username">
+<input name="username" placeholder="Логин">
 
-<label>Пароль</label>
-<input type="password" name="password">
+<input name="first_name" placeholder="Имя">
 
-<button type="submit">Войти</button>
+<input name="last_name" placeholder="Фамилия">
+
+<input type="password" name="password" placeholder="Пароль">
+
+<select name="role">
+
+<option value="user">User</option>
+<option value="admin">Admin</option>
+
+</select>
+
+<button type="submit">Создать</button>
 
 </form>
+
+<hr>
+
+<h3>Список пользователей</h3>
+
+{% for u in users %}
+
+<p>
+{{u.username}}
+|
+{{u.first_name}} {{u.last_name}}
+|
+{{u.role}}
+</p>
+
+{% endfor %}
+
+<br>
+
+<a href="/logout">Выйти</a>
 
 </body>
 </html>
